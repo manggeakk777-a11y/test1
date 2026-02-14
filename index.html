@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine</title>
+
+<style>
+body{
+    margin:0;
+    background:pink;
+    font-family:Arial;
+    overflow:hidden;
+    text-align:center;
+}
+
+/* JUDUL */
+.judul{
+    margin-top:20px;
+    font-size:45px;
+    color:white;
+    font-weight:bold;
+    text-shadow:0 0 20px red,0 0 40px hotpink;
+}
+
+/* BOX FOTO */
+.box{
+    position:relative;
+    width:300px;
+    height:400px;
+    margin:30px auto;
+    overflow:hidden;
+    border-radius:25px;
+    box-shadow:0 0 30px red;
+}
+
+/* FOTO */
+.slide{
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* TOMBOL */
+.btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:white;
+    border:none;
+    font-size:25px;
+    padding:8px 15px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+/* LOVE */
+.love{
+    position:fixed;
+    top:-10px;
+    font-size:22px;
+    animation:jatuh linear infinite;
+}
+
+@keyframes jatuh{
+    0%{transform:translateY(-10px);}
+    100%{transform:translateY(100vh);}
+}
+
+/* BUNGA */
+.bunga{
+    position:fixed;
+    bottom:-10px;
+    font-size:22px;
+    animation:naik linear infinite;
+}
+
+@keyframes naik{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="judul">Happy Valentine 💖</div>
+
+<div class="box">
+
+    <div class="slide"><img src="1.jpeg"></div>
+    <div class="slide"><img src="2.jpeg"></div>
+    <div class="slide"><img src="3.jpeg"></div>
+    <div class="slide"><img src="4.jpeg"></div>
+    <div class="slide"><img src="5.jpeg"></div>
+    <div class="slide"><img src="6.jpeg"></div>
+
+
+    <button class="btn prev" onclick="prev()">‹</button>
+    <button class="btn next" onclick="next()">›</button>
+
+</div>
+
+<script>
+let index=0;
+let slides=document.getElementsByClassName("slide");
+
+function tampil(){
+    for(let i=0;i<slides.length;i++){
+        slides[i].style.display="none";
+    }
+    slides[index].style.display="block";
+}
+tampil();
+
+function next(){
+    index++;
+    if(index>=slides.length){index=0;}
+    tampil();
+}
+
+function prev(){
+    index--;
+    if(index<0){index=slides.length-1;}
+    tampil();
+}
+
+/* AUTO SLIDE */
+setInterval(next,3000);
+
+/* LOVE */
+for(let i=0;i<20;i++){
+ let love=document.createElement("div");
+ love.innerHTML="💖";
+ love.className="love";
+ love.style.left=Math.random()*100+"%";
+ love.style.animationDuration=(Math.random()*3+4)+"s";
+ document.body.appendChild(love);
+}
+
+/* BUNGA */
+for(let i=0;i<15;i++){
+ let bunga=document.createElement("div");
+ bunga.innerHTML="🌸";
+ bunga.className="bunga";
+ bunga.style.left=Math.random()*100+"%";
+ bunga.style.animationDuration=(Math.random()*5+6)+"s";
+ document.body.appendChild(bunga);
+}
+</script>
+
+</body>
+</html>
